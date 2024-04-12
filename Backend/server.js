@@ -2,6 +2,22 @@ import express from 'express';
 import multer from 'multer';
 import { imread, ORBDetector, matchBruteForceHamming } from 'opencv4nodejs';
 
+// Crea una conexión a la base de datos
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: '',
+    password: '',
+    database: 'carnet'
+  });
+  
+  // Conecta a la base de datos
+  db.connect(err => {
+    if (err) {
+      throw err;
+    }
+    console.log('Conectado a la base de datos');
+  });
+
 const app = express();
 const upload = multer({ dest: 'uploads/' });
 
